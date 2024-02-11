@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Make sure styles.css exists in the same directory -->
+<style>
+body {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgITqmh1NRqDAf1-Ekf65JUuK22UGkmt_2UA&usqp=CAU');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Food Delivery</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="menu">
+        <h2>Menu</h2>
+        <div class="menu-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK4ZdJ5NpIkbIlNSMnl_T2UyZNaOqWySSzYw&usqp=CAU" alt="Idli and Sambar">
+            <h3>Idli and Sambar</h3>
+            <p>lentils, plenty of spices, mixed vegetables and herbs</p>
+            <span class="price">Starting from 30 Only</span>
+            <button class="order-button" onclick="addToCart('Idli and Sambar', 30)">Order</button>
+        </div>
+    
+        <!-- Add more menu items below -->
+        
+        <div class="menu-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwHRGKUEVQxmhL_2Tgkqi1gydkXYWuXlmm9g&usqp=CAU" alt="Pizza">
+            <h3>dosa sambar</h3>
+            <p>Dosa is also a great source of healthy carbohydrates.</p>
+            <span class="price">Starting from 50 Only</span>
+            <button class="order-button" onclick="addToCart('dosa sambar', 50)">Order</button>
+        </div>
+    
+        <div class="menu-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJlZ9DBsNLb485poKlglNtaMhbblX00u9zzg&usqp=CAU" alt="pongal">
+            <h3>Pongal</h3>
+            <p>Taste the magic of homemade</p>
+            <span class="price">Starting from 70 Only</span>
+            <button class="order-button" onclick="addToCart('pongal', 70)">Order</button>
+        </div>
+    
+        <div class="menu-item">
+            <img src="https://media.istockphoto.com/id/607990272/photo/sambar-and-rice-south-indian-cuisine.jpg?s=170x170&k=20&c=pqSdJINjsCZp9ESmzSXj6UlFy-NjDu-cf-Bc6i70R54=" alt="Beef">
+            <h3>meals</h3>
+            <p>Sambar is overrated. Rice is underrated. When Sambar makes your day like nothing else could.. </p>
+            <span class="price">Starting from 100 Only</span>
+            <button class="order-button" onclick="addToCart('meals', 100)">Order</button>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart">
+        <h2>Cart</h2>
+        <ul id="cart-items">
+        </ul>
+        <p>Total: $<span id="cart-total">0.00</span></p>
+        <button class="order-button" onclick="placeOrder()">Place Order</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Food Delivery</p>
+    </footer>
+
+    <!-- JavaScript for Cart Functionality -->
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            total += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+            cartItems.innerHTML = "";
+            cart.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = `${item.item} - $${item.price.toFixed(2)}`;
+                cartItems.appendChild(li);
+            });
+            cartTotal.textContent = total.toFixed(2);
+        }
+
+        function placeOrder() {
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add items to your cart before placing an order.");
+            } else {
+                alert('Order placed!your food will be deliver soon ' );
+                cart = [];
+                total = 0;
+                updateCart();
+            }
+        }
+    </script>
+</body>
+</html>

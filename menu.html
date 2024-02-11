@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Make sure styles.css exists in the same directory -->
+<style>
+body {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgITqmh1NRqDAf1-Ekf65JUuK22UGkmt_2UA&usqp=CAU');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Food Delivery</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="menu">
+        <h2>Menu</h2>
+        <div class="menu-item">
+            <img src="https://media.istockphoto.com/id/1309352410/photo/cheeseburger-with-tomato-and-lettuce-on-wooden-board.jpg?s=612x612&w=0&k=20&c=lfsA0dHDMQdam2M1yvva0_RXfjAyp4gyLtx4YUJmXgg=" alt="Burger">
+            <h3>Burger</h3>
+            <p>Delicious burger with fries</p>
+            <span class="price">Starting from 120 Only</span>
+            <button class="order-button" onclick="addToCart('Burger', 120)">Order</button>
+        </div>
+    
+        
+        
+        <div class="menu-item">
+            <img src="https://e1.pxfuel.com/desktop-wallpaper/142/10/desktop-wallpaper-pizza-high-quality-pinterest-cheese-pizza.jpg" alt="Pizza">
+            <h3>Pizza</h3>
+            <p>Authentic Italian pizza with various toppings</p>
+            <span class="price">Starting from 299 Only</span>
+            <button class="order-button" onclick="addToCart('Pizza', 299)">Order</button>
+        </div>
+    
+        <div class="menu-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRffPCaLbXvYQqPzqENjyWVebrhFmyt3xxcwg&usqp=CAU" alt="Chicken">
+            <h3>Chicken</h3>
+            <p>Taste the magic of homemade chicken curry</p>
+            <span class="price">Starting from 150 Only</span>
+            <button class="order-button" onclick="addToCart('Chicken', 150)">Order</button>
+        </div>
+    
+        <div class="menu-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6UC8FTjN9bCkwlp6j8C1XtCmfkVXfFt90IQ&usqp=CAU" alt="Beef">
+            <h3>Biryani</h3>
+            <p>Classic pasta dishes made to perfection</p>
+            <span class="price">Starting from 200 Only</span>
+            <button class="order-button" onclick="addToCart('Beef', 200)">Order</button>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart">
+        <h2>Cart</h2>
+        <ul id="cart-items">
+        </ul>
+        <p>Total: $<span id="cart-total">0.00</span></p>
+        <button class="order-button" onclick="placeOrder()">Place Order</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Food Delivery</p>
+    </footer>
+
+    <!-- JavaScript for Cart Functionality -->
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            total += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+            cartItems.innerHTML = "";
+            cart.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = `${item.item} - $${item.price.toFixed(2)}`;
+                cartItems.appendChild(li);
+            });
+            cartTotal.textContent = total.toFixed(2);
+        }
+
+        function placeOrder() {
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add items to your cart before placing an order.");
+            } else {
+                alert(`Order placed! Total amount: $${total.toFixed(2)}`);
+                cart = [];
+                total = 0;
+                updateCart();
+            }
+        }
+    </script>
+</body>
+</html>
